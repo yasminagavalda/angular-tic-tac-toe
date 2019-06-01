@@ -1,0 +1,20 @@
+.btn {
+  background: #387ef5;
+  border: solid 1px #387ef5;
+  border-radius: 7px;
+  color: white;
+  cursor: pointer;
+  font-size: 0.8em;
+  outline: none;
+  padding: 10px 50px;
+  -webkit-transition: 300ms all;
+  transition: 300ms all;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn.disabled {
+  opacity: 0.5;
+}

@@ -1,0 +1,7 @@
+<button
+  class="btn"
+  [class.disabled]="_stateService.state.movements === 0"
+  (click)="_handleResetClick()"
+>
+  Reset
+</button>

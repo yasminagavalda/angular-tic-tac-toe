@@ -1,0 +1,16 @@
+button {
+  height: 100px;
+  width: 100px;
+}
+
+button:disabled {
+  color: black;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.not-clickable {
+  cursor: not-allowed;
+}

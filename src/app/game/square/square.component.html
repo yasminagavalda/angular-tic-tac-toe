@@ -1,0 +1,11 @@
+<button
+  [class.clickable]="_stateService.state.values[row][column] === '-'"
+  [class.not-clickable]="_stateService.state.values[row][column] !== '-'"
+  (click)="_handleSquareClick()"
+  [disabled]="
+    _stateService.state.values[row][column] !== '-' ||
+    _stateService.state.winner !== ''
+  "
+>
+  {{ (_stateService.state$ | async).values[row][column] }}
+</button>
