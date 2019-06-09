@@ -1,6 +1,6 @@
 # TicTacToe
 
-This project is an exercise included in [Miríadax](https://miriadax.net/) course [**Client-based Web Applications development: ReactJS & Angular (2.ª edición)**](https://miriadax.net/web/reactangularmooc) in Module 4. Angular Modules, Services And Dependency Injection
+This project are two exercises included in [Miríadax](https://miriadax.net/) course [**Client-based Web Applications development: ReactJS & Angular (2.ª edición)**](https://miriadax.net/web/reactangularmooc) in Module 4. Angular Modules, Services And Dependency Injection and Module 5. Angular Routes And Backend Services.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.1.
 
