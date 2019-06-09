@@ -1,4 +1,22 @@
-<app-header></app-header>
-<app-board></app-board>
-<app-movements-counter></app-movements-counter>
-<app-reset></app-reset>
+<div class="loader" *ngIf="_status === 'fetching'"></div>
+<div *ngIf="_status === 'SUCCESS' && (_stateService.state$ | async).saving !== true">
+  <form *ngIf="(_stateService.state$ | async).player_name === ''">
+    <label>Introduce Player Name </label>
+    <input [(ngModel)]="_player_name" type="text" name="_player_name" />
+    <button (click)="_handleSubmitClick()" type="submit">Submit</button>
+  </form>
+  <div *ngIf="(_stateService.state$ | async).player_name !== ''">
+    <app-header></app-header>
+    <app-board></app-board>
+    <app-movements-counter></app-movements-counter>
+    <app-save></app-save> <app-reset></app-reset>
+  </div>
+</div>
+<div *ngIf="_status !== 'fetching' && _status !== 'SUCCESS' && (_stateService.state$ | async).saving !== true">
+  There is an error in the backend communication. Error: {{ _status }}
+</div>
+<form *ngIf="(_stateService.state$ | async).saving === true">
+  <label>Introduce Game Name </label>
+  <input [(ngModel)]="_game_name" type="text" name="_game_name" />
+  <button (click)="_handleSaveClick()" type="submit">Save Game</button>
+</form>

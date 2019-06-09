@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { StateService } from './../state.service';
 
 @Component({
-  selector: 'app-reset',
-  templateUrl: './reset.component.html',
-  styleUrls: ['./reset.component.css']
+  selector: 'app-saved-games',
+  templateUrl: './saved-games.component.html',
+  styleUrls: ['./saved-games.component.css']
 })
-export class ResetComponent implements OnInit {
+export class SavedGamesComponent implements OnInit {
   private _stateService: StateService;
 
   constructor(stateService: StateService) {
@@ -15,7 +15,7 @@ export class ResetComponent implements OnInit {
 
   ngOnInit() {}
 
-  _handleResetClick() {
-    this._stateService.reset();
+  _handleDeleteClick(index) {
+    this._stateService.state.saved_games.splice(index, 1);
   }
 }

@@ -1,25 +1,39 @@
-import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
+export interface Game {
+  game_name: string;
+  id: string;
+}
 export interface State {
   turn: string;
   values: string[][];
   movements: number;
   winner: string;
+  player_name: string;
+  saved_games: Game[];
+  saving: boolean;
+  game_name: string;
+  continue_uri: string;
 }
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class StateService {
   private _state$: BehaviorSubject<State>;
 
   constructor() {
     this._state$ = new BehaviorSubject({
-      turn: "PLAYER X",
-      values: [["-", "-", "-"], ["-", "-", "-"], ["-", "-", "-"]],
+      turn: 'PLAYERX',
+      values: [['-', '-', '-'], ['-', '-', '-'], ['-', '-', '-']],
       movements: 0,
-      winner: ""
+      winner: '',
+      player_name: '',
+      saved_games: [],
+      saving: false,
+      game_name: '',
+      continue_uri: ''
     });
   }
 
@@ -36,9 +50,9 @@ export class StateService {
   }
 
   updateValue(row, col) {
-    if (this.state.values[row][col] === "-") {
-      const player = this.state.turn === "PLAYER X" ? "X" : "0";
-      const newTurn = this.state.turn === "PLAYER X" ? "PLAYER 0" : "PLAYER X";
+    if (this.state.values[row][col] === '-') {
+      const player = this.state.turn === 'PLAYERX' ? 'X' : '0';
+      const newTurn = this.state.turn === 'PLAYERX' ? 'PLAYER0' : 'PLAYERX';
       this.state.values[row][col] = player;
       this.state.turn = newTurn;
       this.state.movements += 1;
@@ -47,10 +61,7 @@ export class StateService {
   }
 
   checkWinner(player) {
-    const playerWins =
-      this.checkRows(player) ||
-      this.checkColumns(player) ||
-      this.checkDiagonals(player);
+    const playerWins = this.checkRows(player) || this.checkColumns(player) || this.checkDiagonals(player);
     if (playerWins) {
       this.state.winner = player;
     }
@@ -73,9 +84,7 @@ export class StateService {
   }
 
   transposeMatrix(matrix) {
-    return Object.keys(matrix[0]).map(colNumber =>
-      matrix.map(rowNumber => rowNumber[colNumber])
-    );
+    return Object.keys(matrix[0]).map(colNumber => matrix.map(rowNumber => rowNumber[colNumber]));
   }
 
   getDiagonals(matrix) {
@@ -106,10 +115,15 @@ export class StateService {
 
   reset() {
     this.state = {
-      turn: "PLAYER X",
-      values: [["-", "-", "-"], ["-", "-", "-"], ["-", "-", "-"]],
+      turn: 'PLAYERX',
+      values: [['-', '-', '-'], ['-', '-', '-'], ['-', '-', '-']],
       movements: 0,
-      winner: ""
+      winner: '',
+      player_name: '',
+      saved_games: this.state.saved_games,
+      saving: false,
+      game_name: '',
+      continue_uri: ''
     };
   }
 }

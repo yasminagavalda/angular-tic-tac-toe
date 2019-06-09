@@ -1,0 +1,9 @@
+<div *ngFor="let game of (_stateService.state$ | async).saved_games; let i = index">
+  <p>
+    {{ game.game_name }}<button [routerLink]="['/continue', game.id]" routerLinkActive="active">Continue</button
+    ><button (click)="_handleDeleteClick(i)">Delete</button>
+  </p>
+</div>
+<div class="no-saved-games" *ngIf="(_stateService.state$ | async).saved_games.length === 0">
+  No games saved yet. Click <a routerLink="/new" routerLinkActive="active">here</a> to start a new game!
+</div>

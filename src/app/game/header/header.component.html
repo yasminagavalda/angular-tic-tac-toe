@@ -1,6 +1,5 @@
-<p *ngIf="_stateService.state.winner === ''">
-  Turn of {{ (_stateService.state$ | async).turn }}
-</p>
-<p *ngIf="_stateService.state.winner !== ''">
-  There is a winner: PLAYER {{ _stateService.state.winner }} !!!
-</p>
+<header>
+  <h3>Welcome {{ (_stateService.state$ | async).player_name }}</h3>
+  <h4 *ngIf="_stateService.state.winner === ''">Turn of {{ (_stateService.state$ | async).turn }}</h4>
+  <h4 *ngIf="_stateService.state.winner !== ''">There is a winner: PLAYER {{ _stateService.state.winner }} !!!</h4>
+</header>
